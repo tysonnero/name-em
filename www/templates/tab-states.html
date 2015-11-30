@@ -1,18 +1,21 @@
-<ion-view view-title="States">
+<ion-view view-title="States" xmlns="http://www.w3.org/1999/html">
   <ion-content>
-    <div class="list">
-      <div class="item item-input-inset">
-        <label class="item-input-wrapper">
-          <input type="text" placeholder="State" ng-model="state">
-        </label>
-        <button class="button button-small" ng-click="states.findState(state)">
-          Find
-        </button>
+    <form name="states.searchForm" ng-submit="states.findState(states.searchText)">
+      <div class="list">
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="State" name="searchText" ng-model="states.searchText">
+          </label>
+          <button class="button button-small" type="submit">
+            Find
+          </button>
+        </div>
       </div>
-    </div>
+    </form>
     <ion-list>
-      <ion-item class="" ng-repeat="match in states.matched">
-        <p>{{ match }}</p>
+      <ion-item class="item-icon-right" ng-repeat="match in states.matched | orderBy">
+        <p>{{ $index + 1 }}) {{ match }}</p>
+        <i class="icon ion-checkmark balanced"></i>
       </ion-item>
     </ion-list>
   </ion-content>

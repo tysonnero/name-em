@@ -36,16 +36,36 @@ function StatesCtrl(StatesService) {
   this.matched = [];
 }
 
-StatesCtrl.prototype.findState = function (state) {
+StatesCtrl.prototype.findState = function (searchText) {
 
-  // Check if we have a match
-  var matchedIndex = this.available.indexOf(state);
-  if (matchedIndex === -1) return;
+  if (!searchText) return;
 
-  // Add state to teh matched array
-  var matched = this.available[matchedIndex];
-  this.matched.push(matched);
+  // Do a fuzzy search to accommodate for misspellings
+  var f = new Fuse(this.available);
+  var result = f.search(searchText, {threshold: 0.5, distance: 0});
+  if (!result.length) return;
 
-  // Remove state from the available list
+  // TODO:
+  // If score is exact match, proceed
+  // Otherwise, confirm
+
+  // Assume the first item on the array
+  var matchedIndex = result[0];
+  var match = this.available[matchedIndex];
+
+  // First letter of match should equal input
+  if (match.toLowerCase().charAt(0) !== searchText.toLowerCase().charAt(0)) return;
+
+  // Input should be at least half the length of match
+  if (searchText.length < (Math.floor(match.length / 2))) return;
+
+  // Add searchText to the matched array
+  this.matched.push(match);
+
+  // Remove searchText from the available list
   this.available.splice(matchedIndex, 1);
+
+  // Reset form
+  this.searchText = '';
+  this.searchForm.$setPristine();
 };
