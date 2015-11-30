@@ -32,14 +32,20 @@ angular.module('starter.controllers', [])
 
 function StatesCtrl(StatesService) {
   this.states = StatesService.get();
+  this.available = this.states;
+  this.matched = [];
 }
 
-StatesCtrl.prototype.validate = function (state) {
-  var self = this;
-  var matches = Object.keys(this.states).filter(function (key) {
-    return self.states[key] === state;
-  });
+StatesCtrl.prototype.findState = function (state) {
 
-  if (matches.length)
-    return matches[0];
+  // Check if we have a match
+  var matchedIndex = this.available.indexOf(state);
+  if (matchedIndex === -1) return;
+
+  // Add state to teh matched array
+  var matched = this.available[matchedIndex];
+  this.matched.push(matched);
+
+  // Remove state from the available list
+  this.available.splice(matchedIndex, 1);
 };
