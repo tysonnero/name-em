@@ -1,21 +1,29 @@
 <ion-view view-title="States" xmlns="http://www.w3.org/1999/html">
-  <ion-content>
+  <ion-header-bar class="bar-subheader">
     <form name="states.searchForm" ng-submit="states.findState(states.searchText)">
-      <div class="list">
-        <div class="item item-input-inset">
-          <label class="item-input-wrapper">
-            <input type="text" placeholder="State" name="searchText" ng-model="states.searchText">
-          </label>
-          <button class="button button-small" type="submit">
-            Find
-          </button>
-        </div>
+      <div class="bar bar-header item-input-inset">
+        <label class="item-input-wrapper">
+          <i class="icon ion-search placeholder-icon"></i>
+          <input type="text" placeholder="State" name="searchText" ng-model="states.searchText">
+        </label>
+        <button class="button button-clear" type="submit">
+          Find
+        </button>
       </div>
     </form>
+  </ion-header-bar>
+  <ion-content>
+    <div class="card">
+      <div class="item item-text-wrap">
+        You have named {{ states.matched.length }} state(s)
+      </div>
+    </div>
     <ion-list>
-      <ion-item class="item-icon-right" ng-repeat="match in states.matched | orderBy">
-        <p>{{ $index + 1 }}) {{ match }}</p>
-        <i class="icon ion-checkmark balanced"></i>
+      <ion-item class="item-button-right item-badge-left" ng-repeat="match in states.matched | orderBy">
+        <span class="badge badge-balanced">{{ $index + 1 }}</span> {{ match }}
+        <a class="button button-icon">
+          <i class="icon ion-close-circled assertive"></i>
+        </a>
       </ion-item>
     </ion-list>
   </ion-content>

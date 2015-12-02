@@ -1,1 +1,6 @@
 /* Empty. Add your own CSS if you like */
+
+.item.item-badge-left .badge {
+  display: inline-block;
+  position: static;
+}
