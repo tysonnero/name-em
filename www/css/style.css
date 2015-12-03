@@ -4,3 +4,7 @@
   display: inline-block;
   position: static;
 }
+
+.content-banner {
+  z-index: 1000;
+}
