@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'jett.ionic.content.banner', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'jett.ionic.content.banner', 'ionic-toast', 'starter.controllers', 'starter.services'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -31,66 +31,25 @@ angular.module('starter', ['ionic', 'jett.ionic.content.banner', 'starter.contro
     // Each state's controller can be found in controllers.js
     $stateProvider
 
-      // setup an abstract state for the tabs directive
-      .state('tab', {
-        url: '/tab',
+      .state('app', {
+        url: '/app',
         abstract: true,
-        templateUrl: 'templates/tabs.html'
+        templateUrl: 'templates/menu.html'
       })
 
       // Each tab has its own nav history stack:
 
-      .state('tab.dash', {
-        url: '/dash',
-        views: {
-          'tab-dash': {
-            templateUrl: 'templates/tab-dash.html',
-            controller: 'DashCtrl'
-          }
-        }
-      })
-
-      .state('tab.states', {
+      .state('app.states', {
         url: '/states',
         views: {
-          'tab-states': {
+          'menuContent': {
             templateUrl: 'templates/tab-states.html',
             controller: 'StatesCtrl as states'
-          }
-        }
-      })
-
-
-      .state('tab.chats', {
-        url: '/chats',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/tab-chats.html',
-            controller: 'ChatsCtrl'
-          }
-        }
-      })
-      .state('tab.chat-detail', {
-        url: '/chats/:chatId',
-        views: {
-          'tab-chats': {
-            templateUrl: 'templates/chat-detail.html',
-            controller: 'ChatDetailCtrl'
-          }
-        }
-      })
-
-      .state('tab.account', {
-        url: '/account',
-        views: {
-          'tab-account': {
-            templateUrl: 'templates/tab-account.html',
-            controller: 'AccountCtrl'
           }
         }
       });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/states');
+    $urlRouterProvider.otherwise('/app/states');
 
   });

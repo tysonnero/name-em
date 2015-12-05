@@ -8,3 +8,7 @@
 .content-banner {
   z-index: 1000;
 }
+
+.ionic_toast_top {
+  top: 30px;
+}

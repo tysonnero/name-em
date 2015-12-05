@@ -30,8 +30,9 @@ angular.module('starter.controllers', [])
 
   .controller('StatesCtrl', StatesCtrl);
 
-function StatesCtrl(StatesService, $ionicContentBanner) {
+function StatesCtrl(StatesService, $ionicContentBanner, ionicToast) {
   this.$ionicContentBanner = $ionicContentBanner;
+  this.ionicToast = ionicToast;
   this.states = StatesService.get();
   this.available = angular.copy(this.states);
   this.matched = [];
@@ -88,13 +89,15 @@ StatesCtrl.prototype.remove = function(item) {
   // Add back to available list
   this.available.splice(originalIndex, 0, item);
 
+  this.showAlert([item + ' removed from list'], 'info');
+
   // TODO: Confirm removal
 };
 
 StatesCtrl.prototype.showAlert = function(text, type) {
   this.$ionicContentBanner.show({
     text: text,
-    autoClose: 5000,
+    autoClose: 2500,
     type: type
   });
 };
