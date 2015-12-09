@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'jett.ionic.content.banner', 'ionic-toast', 
         url: '/states',
         views: {
           'menuContent': {
-            templateUrl: 'templates/tab-states.html',
+            templateUrl: 'templates/states.html',
             controller: 'StatesCtrl as states'
           }
         }

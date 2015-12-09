@@ -1,4 +1,9 @@
 <ion-view view-title="States" xmlns="http://www.w3.org/1999/html">
+  <ion-nav-buttons side="secondary">
+    <button class="button">
+      Hint
+    </button>
+  </ion-nav-buttons>
   <ion-header-bar class="bar-subheader">
     <form name="states.searchForm" ng-submit="states.add(states.searchText)">
       <div class="bar bar-header item-input-inset">
@@ -22,7 +27,7 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  <div class="bar bar-footer" ng-class="(states.matched.length == states.states.length) ? 'bar-balanced' : 'bar-calm'">
-    <div class="title">You have named {{ states.matched.length }} state(s)</div>
-  </div>
+  <ion-footer-bar ng-class="(states.matched.length == states.states.length) ? 'bar-balanced' : 'bar-calm'">
+    <h1 class="title">You have {{ states.matched.length }} of {{ states.states.length }} state(s)</h1>
+  </ion-footer-bar>
 </ion-view>
